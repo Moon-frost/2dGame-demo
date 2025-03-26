@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://iixpjw25d7xg"]
+
+[ext_resource type="Texture2D" uid="uid://cvmhd6wn64nt0" path="res://AssetBundle/Sprites/Foxy.png" id="1_ubg1c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qvld"]
+atlas = ExtResource("1_ubg1c")
+region = Rect2(0, 0, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0tup"]
+atlas = ExtResource("1_ubg1c")
+region = Rect2(33, 0, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ro3v3"]
+atlas = ExtResource("1_ubg1c")
+region = Rect2(66, 0, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ta2my"]
+atlas = ExtResource("1_ubg1c")
+region = Rect2(99, 0, 33, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8tt7p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qvld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0tup")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ro3v3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ta2my")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 7.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8tt7p")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.581268
