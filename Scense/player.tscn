@@ -1,7 +1,32 @@
-[gd_scene load_steps=15 format=3 uid="uid://iixpjw25d7xg"]
+[gd_scene load_steps=22 format=3 uid="uid://iixpjw25d7xg"]
 
 [ext_resource type="Script" uid="uid://c4gnp0caky30s" path="res://Script/player.gd" id="1_1qvld"]
 [ext_resource type="Texture2D" uid="uid://cvmhd6wn64nt0" path="res://AssetBundle/Sprites/Foxy.png" id="1_ubg1c"]
+[ext_resource type="PackedScene" uid="uid://3qdpe0f4hptj" path="res://Scense/bullet.tscn" id="2_pe6d0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aeaeq"]
+atlas = ExtResource("1_ubg1c")
+region = Rect2(0, 256, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pe6d0"]
+atlas = ExtResource("1_ubg1c")
+region = Rect2(33, 256, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_111cm"]
+atlas = ExtResource("1_ubg1c")
+region = Rect2(66, 256, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ays3o"]
+atlas = ExtResource("1_ubg1c")
+region = Rect2(99, 256, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ia864"]
+atlas = ExtResource("1_ubg1c")
+region = Rect2(132, 256, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xai2p"]
+atlas = ExtResource("1_ubg1c")
+region = Rect2(165, 256, 33, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1qvld"]
 atlas = ExtResource("1_ubg1c")
@@ -45,6 +70,29 @@ region = Rect2(165, 32, 33, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8tt7p"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aeaeq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pe6d0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_111cm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ays3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ia864")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xai2p")
+}],
+"loop": true,
+"name": &"game_over",
+"speed": 8.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1qvld")
@@ -93,13 +141,19 @@ radius = 13.0
 script = ExtResource("1_1qvld")
 move_speed = 100.0
 animator = NodePath("AnimatedSprite2D")
+bullet_scene = ExtResource("2_pe6d0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8tt7p")
-animation = &"run"
+animation = &"game_over"
 autoplay = "idle"
-frame_progress = 0.606899
+frame_progress = 0.311252
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_1qvld")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_fire"]

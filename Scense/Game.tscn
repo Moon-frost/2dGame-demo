@@ -56,5 +56,5 @@ rotation = -1.57079
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary/StaticBody2D4"]
 shape = SubResource("WorldBoundaryShape2D_m6270")
 
-[node name="Area2D" parent="." instance=ExtResource("3_peryb")]
+[node name="Slimer" parent="." instance=ExtResource("3_peryb")]
 position = Vector2(201, 76)
