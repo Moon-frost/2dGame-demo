@@ -16,10 +16,12 @@ func _physics_process(delta: float) -> void:
 			animator.play("run")
 
 func game_over():
-	is_game_over = true
-	animator.play("game_over")
-	await get_tree().create_timer(3).timeout
-	get_tree().reload_current_scene()
+	if not is_game_over:
+		is_game_over = true
+		animator.play("game_over")
+		get_tree().current_scene.show_game_over()
+		await get_tree().create_timer(3).timeout
+		get_tree().reload_current_scene()
 
 
 func _on_fire() -> void:

@@ -23,5 +23,6 @@ func _on_bullet_entered(area: Area2D) -> void:
 		animation.play("dead")
 		is_bead = true
 		area.queue_free()
+		get_tree().current_scene.score += 1
 		await get_tree().create_timer(0.6).timeout
 		queue_free()
