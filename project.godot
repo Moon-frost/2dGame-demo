@@ -15,6 +15,15 @@ run/main_scene="uid://c235j2jrh82i0"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Bgm="*res://Scense/Bgm.tscn"
+
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
 [input]
 
 left={

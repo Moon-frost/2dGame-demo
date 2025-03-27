@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 
 func _spawn_slime() -> void:
 	var slimer_node = slimer_sence.instantiate()
-	slimer_node.position = Vector2(266, randf_range(56, 108))
+	slimer_node.position = Vector2(1158, randf_range(468, 600))
 	get_tree().current_scene.add_child(slimer_node)
 
 func show_game_over():

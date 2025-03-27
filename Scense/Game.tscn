@@ -17,54 +17,50 @@ score_label = NodePath("CanvasLayer/Label")
 game_over_label = NodePath("CanvasLayer/gameOverLabel")
 
 [node name="Background1" type="Sprite2D" parent="."]
-position = Vector2(-120, 0)
+position = Vector2(275, 325)
+scale = Vector2(2.28333, 2.31786)
 texture = ExtResource("1_d3oe0")
-metadata/_edit_lock_ = true
 
 [node name="Background2" type="Sprite2D" parent="."]
-position = Vector2(120, 0)
+position = Vector2(853, 324.5)
+scale = Vector2(2.53333, 2.325)
 texture = ExtResource("1_d3oe0")
-metadata/_edit_lock_ = true
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2.42, 2.42)
-metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_m6270")]
-position = Vector2(-170, 79)
+position = Vector2(136, 504)
 
 [node name="Boundary" type="Node2D" parent="."]
-metadata/_edit_lock_ = true
+position = Vector2(549, 316)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Boundary"]
-position = Vector2(0, 132)
+position = Vector2(0, 331)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary/StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_m6270")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Boundary"]
-position = Vector2(-235, 65)
+position = Vector2(-541, 197)
 rotation = 1.57079
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary/StaticBody2D2"]
 shape = SubResource("WorldBoundaryShape2D_m6270")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="Boundary"]
-position = Vector2(0, 36)
+position = Vector2(0, 111)
 rotation = -3.14159
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary/StaticBody2D3"]
 shape = SubResource("WorldBoundaryShape2D_m6270")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="Boundary"]
-position = Vector2(235, 82)
+position = Vector2(599, 213)
 rotation = -1.57079
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary/StaticBody2D4"]
 shape = SubResource("WorldBoundaryShape2D_m6270")
 
 [node name="Slimer" parent="." instance=ExtResource("3_peryb")]
-position = Vector2(266, 108)
+position = Vector2(1159, 606)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
@@ -79,6 +75,7 @@ offset_right = 109.0
 offset_bottom = 65.0
 theme_override_fonts/font = ExtResource("5_0kuhp")
 theme_override_font_sizes/font_size = 48
+text = "Score: 0"
 
 [node name="gameOverLabel" type="Label" parent="CanvasLayer"]
 visible = false

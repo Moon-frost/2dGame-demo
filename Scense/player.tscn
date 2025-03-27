@@ -1,8 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://iixpjw25d7xg"]
+[gd_scene load_steps=25 format=3 uid="uid://iixpjw25d7xg"]
 
 [ext_resource type="Script" uid="uid://c4gnp0caky30s" path="res://Script/player.gd" id="1_1qvld"]
 [ext_resource type="Texture2D" uid="uid://cvmhd6wn64nt0" path="res://AssetBundle/Sprites/Foxy.png" id="1_ubg1c"]
 [ext_resource type="PackedScene" uid="uid://3qdpe0f4hptj" path="res://Scense/bullet.tscn" id="2_pe6d0"]
+[ext_resource type="AudioStream" uid="uid://du2k3qa4y3k0u" path="res://AssetBundle/Audio/Gun.mp3" id="4_111cm"]
+[ext_resource type="AudioStream" uid="uid://duov2amo2m7ve" path="res://AssetBundle/Audio/GameOver.mp3" id="5_ays3o"]
+[ext_resource type="AudioStream" uid="uid://ddy4gjth4ok88" path="res://AssetBundle/Audio/Running.mp3" id="6_ia864"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aeaeq"]
 atlas = ExtResource("1_ubg1c")
@@ -135,7 +138,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1qvld"]
-radius = 13.0
+radius = 10.0499
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animator")]
 script = ExtResource("1_1qvld")
@@ -145,15 +148,25 @@ bullet_scene = ExtResource("2_pe6d0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8tt7p")
-animation = &"game_over"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.311252
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_1qvld")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
 autostart = true
+
+[node name="FireSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_111cm")
+
+[node name="GameOver" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ays3o")
+volume_db = 3.962
+
+[node name="RunningSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_ia864")
 
 [connection signal="timeout" from="Timer" to="." method="_on_fire"]

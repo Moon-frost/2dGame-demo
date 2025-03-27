@@ -5,6 +5,13 @@ extends CharacterBody2D
 @export var bullet_scene : PackedScene
 var is_game_over : bool = false
 
+func _process(delta: float) -> void:
+	if velocity == Vector2.ZERO or is_game_over:
+		$RunningSound.stop()
+	elif not $RunningSound.playing:
+		$RunningSound.play()
+		
+
 func _physics_process(delta: float) -> void:
 	if is_game_over == false:
 		velocity = Input.get_vector("left", "right", "up", "down") * move_speed
@@ -18,6 +25,7 @@ func _physics_process(delta: float) -> void:
 func game_over():
 	if not is_game_over:
 		is_game_over = true
+		$GameOver.play()
 		animator.play("game_over")
 		get_tree().current_scene.show_game_over()
 		await get_tree().create_timer(3).timeout
@@ -27,6 +35,9 @@ func game_over():
 func _on_fire() -> void:
 	if velocity != Vector2.ZERO or is_game_over:
 		return
+		
+	$FireSound.play()
+		
 	var bullet_node = bullet_scene.instantiate()
 	bullet_node.position = position + Vector2(6, 6)
 	get_tree().current_scene.add_child(bullet_node)
