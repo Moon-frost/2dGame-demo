@@ -71,7 +71,7 @@ func game_over():
 		animator.play("game_over")
 
 		await get_tree().create_timer(3).timeout
-		get_tree().reload_current_scene()
+		get_tree().change_scene_to_packed(load("res://Scense/Menu.tscn"))
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("rolling"):
