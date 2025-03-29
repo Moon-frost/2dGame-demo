@@ -4,8 +4,10 @@ extends CharacterBody2D
 @export var animator : AnimatedSprite2D
 @export var bullet_scene : PackedScene
 var is_game_over : bool = false
+var face_direction : bool = true
 
 func _process(delta: float) -> void:
+	# 根据速度或游戏是否结束来控制跑步音效
 	if velocity == Vector2.ZERO or is_game_over:
 		$RunningSound.stop()
 	elif not $RunningSound.playing:
@@ -13,31 +15,51 @@ func _process(delta: float) -> void:
 		
 
 func _physics_process(delta: float) -> void:
+	# 角色移动
 	if is_game_over == false:
 		velocity = Input.get_vector("left", "right", "up", "down") * move_speed
 		move_and_slide()
-
+		
+		# 根据速度判断状态，并播放相应动画
 		if velocity ==  Vector2.ZERO :
 			animator.play("idle")
 		else :
 			animator.play("run")
+		
+			if velocity.x > 0 :
+				face_direction = true
+				animator.flip_h = false
+			elif velocity.x < 0:
+				face_direction = false
+				animator.flip_h = true
 
 func game_over():
 	if not is_game_over:
 		is_game_over = true
+		# 播放游戏结束音效
 		$GameOver.play()
-		animator.play("game_over")
+		# 调用主场景中游戏结束动画
 		get_tree().current_scene.show_game_over()
+		# 播放角色游戏结束动画
+		animator.play("game_over")
 		await get_tree().create_timer(3).timeout
 		get_tree().reload_current_scene()
 
 
 func _on_fire() -> void:
-	if velocity != Vector2.ZERO or is_game_over:
+	# 游戏结束时，停止射击
+	if is_game_over:
 		return
-		
+	
+	# 射击音效
 	$FireSound.play()
-		
+	
+	# 子弹发射方向
 	var bullet_node = bullet_scene.instantiate()
-	bullet_node.position = position + Vector2(6, 6)
+	if face_direction == true:
+		bullet_node.position = position + Vector2(6, 6)
+		bullet_node.direction = 1.0
+	else:
+		bullet_node.position = position + Vector2(-6, 6)
+		bullet_node.direction = -1.0
 	get_tree().current_scene.add_child(bullet_node)

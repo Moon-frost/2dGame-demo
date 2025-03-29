@@ -1,6 +1,7 @@
 extends Area2D
 
 @export var bullet_speed : float
+var direction : float = 1.0
 
 func _ready() -> void:
 	# 子弹在生成6秒后消失
@@ -9,4 +10,4 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	# 子弹的移动速度
-	position += Vector2(bullet_speed, 0) * delta
+	position += Vector2(bullet_speed * direction, 0) * delta

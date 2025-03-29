@@ -11,7 +11,7 @@
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("spawn_timer", "score_label", "game_over_label")]
 y_sort_enabled = true
 script = ExtResource("1_v3i8p")
-slimer_sence = ExtResource("3_peryb")
+slimer_scene = ExtResource("3_peryb")
 spawn_timer = NodePath("Timer")
 score_label = NodePath("CanvasLayer/Label")
 game_over_label = NodePath("CanvasLayer/gameOverLabel")
@@ -27,7 +27,7 @@ scale = Vector2(2.53333, 2.325)
 texture = ExtResource("1_d3oe0")
 
 [node name="Player" parent="." instance=ExtResource("2_m6270")]
-position = Vector2(136, 504)
+position = Vector2(544, 512)
 
 [node name="Boundary" type="Node2D" parent="."]
 position = Vector2(549, 316)
@@ -60,7 +60,7 @@ rotation = -1.57079
 shape = SubResource("WorldBoundaryShape2D_m6270")
 
 [node name="Slimer" parent="." instance=ExtResource("3_peryb")]
-position = Vector2(1159, 606)
+position = Vector2(1136, 520)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
