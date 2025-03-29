@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://iixpjw25d7xg"]
+[gd_scene load_steps=29 format=3 uid="uid://iixpjw25d7xg"]
 
 [ext_resource type="Script" uid="uid://c4gnp0caky30s" path="res://Script/player.gd" id="1_1qvld"]
 [ext_resource type="Texture2D" uid="uid://cvmhd6wn64nt0" path="res://AssetBundle/Sprites/Foxy.png" id="1_ubg1c"]
@@ -46,6 +46,22 @@ region = Rect2(66, 0, 33, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ta2my"]
 atlas = ExtResource("1_ubg1c")
 region = Rect2(99, 0, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kr18"]
+atlas = ExtResource("1_ubg1c")
+region = Rect2(0, 288, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npsjp"]
+atlas = ExtResource("1_ubg1c")
+region = Rect2(33, 288, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqr4k"]
+atlas = ExtResource("1_ubg1c")
+region = Rect2(66, 288, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k54en"]
+atlas = ExtResource("1_ubg1c")
+region = Rect2(99, 288, 33, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8tt7p"]
 atlas = ExtResource("1_ubg1c")
@@ -115,6 +131,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_6kr18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npsjp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqr4k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k54en")
+}],
+"loop": false,
+"name": &"rolling",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_8tt7p")
 }, {
 "duration": 1.0,
@@ -142,24 +175,20 @@ radius = 10.0499
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animator")]
 script = ExtResource("1_1qvld")
-move_speed = 100.0
 animator = NodePath("AnimatedSprite2D")
 bullet_scene = ExtResource("2_pe6d0")
+shot_cooldown = 0.5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8tt7p")
-animation = &"game_over"
+animation = &"rolling"
 autoplay = "idle"
-frame = 5
+frame = 3
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_1qvld")
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
-autostart = true
 
 [node name="FireSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_111cm")
@@ -170,5 +199,3 @@ volume_db = 3.962
 
 [node name="RunningSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_ia864")
-
-[connection signal="timeout" from="Timer" to="." method="_on_fire"]
